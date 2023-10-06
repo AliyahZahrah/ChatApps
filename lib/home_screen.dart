@@ -1,30 +1,65 @@
+import 'package:chatverse/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:chatverse/group_screen.dart';
-import 'package:chatverse/profile.dart';
-import 'contact.dart'; // Import file contact.dart
+import 'contact.dart';
+import 'package:chatverse/sidebar.dart';
 
-class HomeScreen extends StatelessWidget {
-  // ignore: use_key_in_widget_constructors
-  const HomeScreen({Key? key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool isSidebarOpen = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
-      body: const Body(),
+      appBar: buildCustomAppBar(),
+      body: Stack(
+        children: [
+          const Body(),
+          if (isSidebarOpen)
+            GestureDetector(
+              onTap: () {
+                // Tutup sidebar saat area luar (content) diklik
+                _toggleSidebar();
+              },
+              child: Container(
+                color: Colors.black.withOpacity(0.3),
+              ),
+            ),
+          if (isSidebarOpen)
+            const Positioned(
+              left: 0,
+              top: 0,
+              bottom: 0,
+              child: Sidebar(),
+            ),
+        ],
+      ),
       bottomNavigationBar: buildBottomNavigationBar(context),
     );
   }
 
-  AppBar buildAppBar() {
+  AppBar buildCustomAppBar() {
     return AppBar(
-      automaticallyImplyLeading: false,
       title: const Text("ChatVerse"),
+      automaticallyImplyLeading: false,
       actions: [
         IconButton(
           icon: const Icon(Icons.search),
           onPressed: () {},
-        )
+        ),
+        IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: () {
+            // Buka atau tutup sidebar saat ikon menu diklik
+            _toggleSidebar();
+          },
+        ),
       ],
     );
   }
@@ -53,31 +88,33 @@ class HomeScreen extends StatelessWidget {
       ],
       onTap: (int index) {
         if (index == 0) {
-          // Navigasi ke halaman chat jika ikon chat diklik
           Navigator.of(context).push(
             MaterialPageRoute(
-                builder: (context) => const HomeScreen(key: null)),
+              builder: (context) => const HomeScreen(),
+            ),
           );
         } else if (index == 1) {
-          // Navigasi ke halaman group jika ikon grup diklik
           Navigator.of(context).push(
             MaterialPageRoute(
-                builder: (context) => const GroupScreen(key: null)),
+              builder: (context) => const GroupScreen(),
+            ),
           );
         } else if (index == 2) {
-          // Navigasi ke halaman profile jika ikon user account diklik
-          Navigator.of(context).push(
-            MaterialPageRoute(
-                builder: (context) => const ProfileScreen(key: null)),
-          );
+          // Memanggil metode _toggleSidebar saat profil diklik
+          _toggleSidebar();
         }
       },
     );
   }
+
+  void _toggleSidebar() {
+    setState(() {
+      isSidebarOpen = !isSidebarOpen;
+    });
+  }
 }
 
 class Body extends StatelessWidget {
-  // ignore: use_key_in_widget_constructors
   const Body({Key? key});
 
   @override
@@ -86,11 +123,10 @@ class Body extends StatelessWidget {
       itemCount: chatsData.length,
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.symmetric(
-              vertical: 8, horizontal: 16), // Tambahkan padding
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           child: ListTile(
             leading: CircleAvatar(
-              radius: 30, // Peningkatan ukuran CircleAvatar
+              radius: 30,
               backgroundImage: AssetImage(chatsData[index].image),
             ),
             title: Text(
@@ -102,22 +138,25 @@ class Body extends StatelessWidget {
               children: [
                 Text(
                   chatsData[index].lastchat,
-                  style: const TextStyle(
-                      fontSize: 16), // Peningkatan ukuran teks lastchat
+                  style: const TextStyle(fontSize: 16),
                 ),
                 Opacity(
-                  opacity: 0.6, // Tambahkan opacity pada teks waktu (time)
+                  opacity: 0.6,
                   child: Text(
                     chatsData[index].time,
-                    style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16), // Peningkatan ukuran teks time
+                    style: const TextStyle(color: Colors.grey, fontSize: 16),
                   ),
                 ),
               ],
             ),
             onTap: () {
-              // Aksi ketika kontak pesan diklik
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ChatScreen(
+                    contactName: chatsData[index].name,
+                  ),
+                ),
+              );
             },
           ),
         );

@@ -89,7 +89,8 @@ flutter:
      - assets/icon/user.jpg
      - assets/icon/chat.jpg
      - assets/icon/groups.jpg
-    
+     - assets/img/profile_picture.jpg
+     - assets/img/blankprofile.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

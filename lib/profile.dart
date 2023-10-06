@@ -1,59 +1,82 @@
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: const Text("Profile"),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const CircleAvatar(
-            backgroundImage: AssetImage('assets/img/user7.jpg'),
-            radius: 60.0,
-          ),
-          const SizedBox(height: 20.0),
-          const Text(
-            'Edit Profile',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              width: 120.0,
+              height: 120.0,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: AssetImage('assets/img/profile_picture.jpg'),
+                ),
+              ),
             ),
-          ),
-          const SizedBox(height: 20.0),
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              // Aksi ketika ikon Settings diklik
-            },
-            iconSize: 40.0,
-          ),
-          const Text(
-            'Settings',
-            style: TextStyle(
-              fontSize: 18.0,
+            const SizedBox(height: 16.0),
+            const Text(
+              "Cindy",
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          const SizedBox(height: 20.0),
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () {
-              // Aksi ketika ikon Log Out diklik
-            },
-            iconSize: 40.0,
-          ),
-          const Text(
-            'Log Out',
-            style: TextStyle(
-              fontSize: 18.0,
+            const Text(
+              "cindyelonora20@gmail.com",
+              style: TextStyle(
+                fontSize: 16.0,
+                color: Colors.grey,
+              ),
             ),
-          ),
-        ],
+            const SizedBox(height: 24.0),
+            ElevatedButton(
+              onPressed: () {
+                // Fungsi untuk mengedit profil pengguna
+                // Ganti dengan navigasi atau fungsi yang sesuai
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.purpleAccent,
+              ),
+              child: const Text("Edit Profile"),
+            ),
+            const SizedBox(height: 32.0),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text("Settings"),
+              onTap: () {
+                // Navigasi ke halaman pengaturan
+                // Ganti dengan navigasi yang sesuai
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text("Information"),
+              onTap: () {
+                // Navigasi ke halaman informasi
+                // Ganti dengan navigasi yang sesuai
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text("Logout"),
+              onTap: () {
+                // Fungsi untuk logout pengguna
+                // Ganti dengan fungsi yang sesuai
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

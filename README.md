@@ -17,7 +17,7 @@ samples, guidance on mobile development, and a full API reference.
 
 # Topik 7 : Chat Apps
 
-# Nama Anggota Kelompok :
+Nama Anggota Kelompok :
 1. HANSEL YOHANES (535220008)
 2. MARCIA YANPRINCESSA UTAMA (535220044)
 3. DIVO ADRIANO KESUMA DEWA (535220239)

@@ -10,6 +10,9 @@ class Sidebar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Ganti email dengan username
+    String username = "cindyelonora20";
+
     return SizedBox(
       width: MediaQuery.of(context).size.width *
           0.6, // Lebar sidebar sesuai kebutuhan
@@ -48,8 +51,9 @@ class Sidebar extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  const Text(
-                    "cindyelonora20@gmail.com",
+                  // Ganti tampilan email dengan username
+                  Text(
+                    "$username",
                     style: TextStyle(
                       fontSize: 14.0,
                       color: Colors.grey,

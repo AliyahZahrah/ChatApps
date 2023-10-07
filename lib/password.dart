@@ -8,9 +8,11 @@ class PasswordPage extends StatefulWidget {
 }
 
 class _PasswordPageState extends State<PasswordPage> {
-  final TextEditingController _currentPasswordController = TextEditingController();
+  final TextEditingController _currentPasswordController =
+      TextEditingController();
   final TextEditingController _newPasswordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -62,22 +64,6 @@ class _PasswordPageState extends State<PasswordPage> {
               ),
             ),
             const SizedBox(height: 8.0), // Spasi tambahan
-            Center(
-              child: InkWell(
-                onTap: () {
-                  // Implementasikan logika untuk tindakan reset password di sini
-                },
-                child: const Text(
-                  "Reset Password?",
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    color: Colors.blue, // Warna teks menjadi biru
-                    decoration:
-                        TextDecoration.underline, // Tambahkan garis bawah
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       ),

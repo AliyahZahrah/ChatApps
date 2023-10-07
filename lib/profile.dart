@@ -46,7 +46,7 @@ class ProfileScreen extends StatelessWidget {
                 // Ganti dengan navigasi atau fungsi yang sesuai
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.purpleAccent,
+                backgroundColor: const Color.fromARGB(255, 103, 58, 183),
               ),
               child: const Text("Edit Profile"),
             ),

@@ -75,6 +75,7 @@ class WelcomeScreen extends StatelessWidget {
                   'Get Started',
                   style: TextStyle(
                     fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),

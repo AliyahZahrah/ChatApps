@@ -95,7 +95,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.black,
+                            backgroundColor:
+                                const Color.fromARGB(255, 103, 58, 183),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30.0),
                             ),
@@ -107,6 +108,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               'SIGN UP'.toUpperCase(),
                               style: const TextStyle(
                                 fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
                             ),

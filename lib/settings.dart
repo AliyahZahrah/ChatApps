@@ -27,8 +27,16 @@ class SettingScreen extends StatelessWidget {
             subtitle: Text("Blocked account, temporary message"),
           ),
           const ListTile(
+            title: Text("Notification"),
+            subtitle: Text("Chat and group notifications"),
+          ),
+          const ListTile(
             title: Text("Application Language"),
             subtitle: Text("Language used: English (United States)"),
+          ),
+          const ListTile(
+            title: Text("Information"),
+            subtitle: Text("About Application"),
           ),
           const ListTile(
             title: Text("Help"),

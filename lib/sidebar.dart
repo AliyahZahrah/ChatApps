@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'settings.dart'; // Import file settings.dart yang akan dijalankan saat item "Settings" diklik
-import 'userprofile.dart'; // Import file UserProfile.dart
+import 'package:chatverse/settings.dart';
+import 'package:chatverse/userprofile.dart';
+import 'package:chatverse/information.dart';
+import 'package:chatverse/help.dart';
 
 class Sidebar extends StatelessWidget {
-  const Sidebar({super.key});
+  // ignore: use_key_in_widget_constructors
+  const Sidebar({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,7 @@ class Sidebar extends StatelessWidget {
           children: <Widget>[
             DrawerHeader(
               decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 107, 40, 174),
+                color: Color.fromARGB(255, 103, 58, 183),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,20 +36,6 @@ class Sidebar extends StatelessWidget {
                             image: AssetImage('assets/img/blankprofile.jpg'),
                           ),
                         ),
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.edit,
-                          color: Colors.white,
-                        ),
-                        onPressed: () {
-                          // Navigasi ke halaman UserProfile saat ikon pensil ditekan
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const UserProfile(),
-                            ),
-                          );
-                        },
                       ),
                     ],
                   ),
@@ -95,9 +84,14 @@ class Sidebar extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.info),
-              title: const Text("About"),
+              title: const Text("Information"),
               onTap: () {
                 // Navigasi ke halaman informasi tentang aplikasi
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const InformationScreen(),
+                  ),
+                );
               },
             ),
             ListTile(
@@ -105,6 +99,11 @@ class Sidebar extends StatelessWidget {
               title: const Text("Help"),
               onTap: () {
                 // Navigasi ke halaman bantuan
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const HelpScreen(),
+                  ),
+                );
               },
             ),
           ],

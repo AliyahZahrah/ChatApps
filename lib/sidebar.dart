@@ -43,7 +43,7 @@ class Sidebar extends StatelessWidget {
                           // Navigasi ke halaman UserProfile saat ikon pensil ditekan
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => UserProfile(),
+                              builder: (context) => const UserProfile(),
                             ),
                           );
                         },
@@ -76,7 +76,7 @@ class Sidebar extends StatelessWidget {
                 // Navigasi ke halaman UserProfile saat "Edit Profile" diklik
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => UserProfile(),
+                    builder: (context) => const UserProfile(),
                   ),
                 );
               },

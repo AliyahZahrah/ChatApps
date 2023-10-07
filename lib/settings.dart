@@ -18,7 +18,7 @@ class SettingScreen extends StatelessWidget {
             onTap: () {
               // Navigasi ke halaman UserProfile jika "Account" diklik
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => UserProfile(),
+                builder: (context) => const UserProfile(),
               ));
             },
           ),

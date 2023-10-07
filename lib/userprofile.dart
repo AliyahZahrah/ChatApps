@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 
 class UserProfile extends StatefulWidget {
+  const UserProfile({super.key});
+
   @override
   _UserProfileState createState() => _UserProfileState();
 }
@@ -37,10 +39,10 @@ class _UserProfileState extends State<UserProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Edit Profile"),
+        title: const Text("Edit Profile"),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -58,21 +60,21 @@ class _UserProfileState extends State<UserProfile> {
                     child: CircleAvatar(
                       radius: 80.0,
                       backgroundImage: isImageSelected
-                          ? FileImage(File(imagePath!)) as ImageProvider<Object>
-                          : AssetImage('assets/img/blankprofile.jpg')
-                              as ImageProvider<Object>,
+                          ? FileImage(File(imagePath!))
+                          : const AssetImage('assets/img/blankprofile.jpg')
+                              as ImageProvider,
                     ),
                   ),
-                  SizedBox(height: 8.0),
-                  Text(
+                  const SizedBox(height: 8.0),
+                  const Text(
                     "Enter your name and add an optional profile picture",
                     style: TextStyle(fontSize: 14.0, color: Colors.grey),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 16.0),
-            Text(
+            const SizedBox(height: 16.0),
+            const Text(
               "Display Name",
               style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
             ),
@@ -83,8 +85,8 @@ class _UserProfileState extends State<UserProfile> {
                 // Implementasikan penyimpanan perubahan nama di sini
               },
             ),
-            SizedBox(height: 16.0),
-            Text(
+            const SizedBox(height: 16.0),
+            const Text(
               "Email",
               style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
             ),
@@ -96,8 +98,8 @@ class _UserProfileState extends State<UserProfile> {
                 // Implementasikan penyimpanan perubahan email di sini
               },
             ),
-            SizedBox(height: 16.0),
-            Text(
+            const SizedBox(height: 16.0),
+            const Text(
               "About",
               style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
             ),
@@ -106,8 +108,8 @@ class _UserProfileState extends State<UserProfile> {
                   3, // Ini memungkinkan pengguna untuk menulis beberapa baris teks
               // Implementasikan input status di sini
             ),
-            SizedBox(height: 16.0),
-            Text(
+            const SizedBox(height: 16.0),
+            const Text(
               "Password",
               style: TextStyle(
                   fontSize: 16.0,
@@ -117,10 +119,10 @@ class _UserProfileState extends State<UserProfile> {
             InkWell(
               onTap: () {
                 // Navigasi ke halaman password.dart ketika teks "Change password?" diklik
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => PasswordPage()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const PasswordPage()));
               },
-              child: Text(
+              child: const Text(
                 "Change password?",
                 style: TextStyle(
                   fontSize: 16.0,
@@ -131,13 +133,13 @@ class _UserProfileState extends State<UserProfile> {
                 ),
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Center(
               child: ElevatedButton(
                 onPressed: () {
                   // Implementasikan logika untuk menyimpan perubahan profil di sini
                 },
-                child: Text("Save"),
+                child: const Text("Save"),
               ),
             ),
           ],
@@ -151,14 +153,14 @@ class _UserProfileState extends State<UserProfile> {
       context: context,
       builder: (BuildContext context) {
         return SimpleDialog(
-          title: Text("Profile Picture Options"),
+          title: const Text("Profile Picture Options"),
           children: <Widget>[
             SimpleDialogOption(
               onPressed: () {
                 Navigator.of(context).pop(); // Tutup dialog
                 _pickImage(); // Pilih gambar dari library
               },
-              child: Text("Choose from Library"),
+              child: const Text("Choose from Library"),
             ),
             if (isImageSelected)
               SimpleDialogOption(
@@ -166,7 +168,7 @@ class _UserProfileState extends State<UserProfile> {
                   Navigator.of(context).pop(); // Tutup dialog
                   _showDeleteProfilePictureConfirmationDialog();
                 },
-                child: Text("Delete Current Profile Picture"),
+                child: const Text("Delete Current Profile Picture"),
               ),
           ],
         );
@@ -179,22 +181,22 @@ class _UserProfileState extends State<UserProfile> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Delete Current Profile Picture"),
-          content: Text(
+          title: const Text("Delete Current Profile Picture"),
+          content: const Text(
               "Are you sure you want to delete your current profile picture?"),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("Cancel"),
+              child: const Text("Cancel"),
             ),
             TextButton(
               onPressed: () {
                 _deleteImageAndSetDefault();
-                // Tidak perlu menutup dialog konfirmasi di sini
+                Navigator.of(context).pop(); // Close the confirmation dialog
               },
-              child: Text("Delete"),
+              child: const Text("Delete"),
             ),
           ],
         );

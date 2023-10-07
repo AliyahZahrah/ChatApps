@@ -91,6 +91,16 @@ flutter:
      - assets/icon/groups.jpg
      - assets/img/profile_picture.jpg
      - assets/img/blankprofile.jpg
+     - assets/img/polos.jpg
+     - assets/icon/account.jpg
+     - assets/icon/bahasa.jpg
+     - assets/icon/editprofile.jpg
+     - assets/icon/help.jpg
+     - assets/icon/info.jpg
+     - assets/icon/lock.jpg
+     - assets/icon/notif.jpg
+     - assets/icon/setting.jpg
+     - assets/img/groupmp.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

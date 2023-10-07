@@ -1,11 +1,12 @@
-import 'package:chatverse/groupchat_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:chatverse/group.dart';
-import 'package:chatverse/sidebar.dart';
 import 'package:chatverse/home_screen.dart';
+import 'package:chatverse/sidebar.dart';
+import 'package:flutter/material.dart';
+import 'package:chatverse/groupchat_screen.dart';
+import 'package:chatverse/group.dart';
 
 class GroupScreen extends StatefulWidget {
-  const GroupScreen({Key? key}) : super(key: key);
+  final String groupName;
+  const GroupScreen({Key? key, required this.groupName}) : super(key: key);
 
   @override
   _GroupScreenState createState() => _GroupScreenState();
@@ -89,11 +90,12 @@ class _GroupScreenState extends State<GroupScreen> {
         } else if (index == 1) {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => const GroupScreen(),
+              builder: (context) => const GroupScreen(
+                groupName: '',
+              ), // Hapus const di sini
             ),
           );
         } else if (index == 2) {
-          // Memanggil metode _toggleSidebar saat profil diklik
           _toggleSidebar();
         }
       },
@@ -113,61 +115,61 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: groupsData.length + 1, // Tambahkan satu item untuk ikon tambah
-      itemBuilder: (context, index) {
-        if (index == 0) {
-          // Item pertama adalah ikon tambah
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-            child: ListTile(
-              leading: const CircleAvatar(
-                backgroundColor: Color(0xFF673AB7),
-                child: Icon(
-                  Icons.add,
-                  color: Colors.white,
+    return SafeArea(
+      child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: groupsData.length + 1,
+        itemBuilder: (context, index) {
+          if (index == 0) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+              child: ListTile(
+                leading: const CircleAvatar(
+                  backgroundColor: Color(0xFF673AB7),
+                  child: Icon(
+                    Icons.add,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-              title: const Text(
-                'New Group',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 103, 58, 183),
+                title: const Text(
+                  'New Group',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 103, 58, 183),
+                  ),
                 ),
+                onTap: () {
+                  // Logic when add icon is clicked
+                  // Add logic to add a new group here
+                },
               ),
-              onTap: () {
-                // Aksi ketika ikon tambah diklik
-                // Tambahkan logika untuk menambahkan kontak baru di sini
-              },
-            ),
-          );
-        } else {
-          // Item berikutnya adalah daftar kontak
-          final contactIndex =
-              index - 1; // Karena elemen pertama adalah "New Contact"
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-            child: ListTile(
-              leading: CircleAvatar(
-                radius: 30,
-                backgroundImage: AssetImage(groupsData[contactIndex].image),
-              ),
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            );
+          } else {
+            final groupIndex = index - 1;
+            final group = groupsData[groupIndex];
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              child: SizedBox(
+                width: double.infinity,
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 30,
+                    backgroundImage: AssetImage(group.image),
+                  ),
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        groupsData[contactIndex].name,
+                        group.name,
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      const SizedBox(height: 5),
                       Text(
-                        groupsData[contactIndex].time,
+                        group.participants, // Menampilkan jumlah peserta
                         style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 16,
@@ -175,27 +177,21 @@ class Body extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 5),
-                  Text(
-                    groupsData[contactIndex].lastchat,
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                ],
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => GroupChatScreen(
+                          groupName: group.name, // Mengirimkan nama grup
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
-              onTap: () {
-                // Aksi ketika kontak pesan diklik
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => GroupChatScreen(
-                      contactName: groupsData[contactIndex].name,
-                    ),
-                  ),
-                );
-              },
-            ),
-          );
-        }
-      },
+            );
+          }
+        },
+      ),
     );
   }
 }

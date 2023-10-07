@@ -1,4 +1,5 @@
 import 'package:chatverse/chat_screen.dart';
+import 'package:chatverse/search.dart';
 import 'package:flutter/material.dart';
 import 'package:chatverse/group_screen.dart';
 import 'contact.dart';
@@ -51,7 +52,13 @@ class _HomeScreenState extends State<HomeScreen> {
       actions: [
         IconButton(
           icon: const Icon(Icons.search),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const SearchScreen(),
+              ),
+            );
+          },
         ),
       ],
     );
@@ -89,7 +96,9 @@ class _HomeScreenState extends State<HomeScreen> {
         } else if (index == 1) {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => const GroupScreen(),
+              builder: (context) => const GroupScreen(
+                groupName: '',
+              ),
             ),
           );
         } else if (index == 2) {

@@ -1,73 +1,37 @@
+class User {
+  final String username;
+  final String name;
+
+  User(this.username, this.name);
+}
+
 class Group {
-  final String name, lastchat, image, time;
+  final String name;
+  final String participants;
+  final String image;
+  final List<User> members;
 
   Group({
     required this.name,
-    required this.lastchat,
+    required this.participants,
     required this.image,
-    required this.time,
+    required this.members,
   });
 }
 
-List groupsData = [
+List<Group> groupsData = [
   Group(
-    name: "Aliyah",
-    lastchat: "Hi!",
-    image: 'assets/img/user5.jpg',
-    time: '5s ago',
-  ),
-  Group(
-    name: "Sasa",
-    lastchat: "Hi!",
-    image: 'assets/img/user4.jpg',
-    time: '5s ago',
-  ),
-  Group(
-    name: "Tiara",
-    lastchat: "Hi!",
-    image: 'assets/img/user6.jpg',
-    time: '5s ago',
-  ),
-  Group(
-    name: "Hansel",
-    lastchat: "Hi!",
-    image: 'assets/img/user1.jpg',
-    time: '5s ago',
-  ),
-  Group(
-    name: "Christopher",
-    lastchat: "Hi!",
-    image: 'assets/img/user2.jpg',
-    time: '5s ago',
-  ),
-  Group(
-    name: "Divo",
-    lastchat: "Hi!",
-    image: 'assets/img/user3.jpg',
-    time: '5s ago',
-  ),
-  Group(
-    name: "Zahrah",
-    lastchat: "Hi!",
-    image: 'assets/img/user4.jpg',
-    time: '5s ago',
-  ),
-  Group(
-    name: "Lala",
-    lastchat: "Hi!",
-    image: 'assets/img/user5.jpg',
-    time: '5s ago',
-  ),
-  Group(
-    name: "Icha",
-    lastchat: "Hi!",
-    image: 'assets/img/user6.jpg',
-    time: '5s ago',
-  ),
-  Group(
-    name: "Luna",
-    lastchat: "Hi!",
-    image: 'assets/img/user4.jpg',
-    time: '5s ago',
+    name: "Group Mobile Programming",
+    participants: "7 Peserta",
+    image: 'assets/img/groupmp.jpg',
+    members: [
+      User("aliyahz22", "Aliyah Zahrah"),
+      User("sasa", "Marcia Yanprincessa Utama"),
+      User("tiara", "Tiara Alviana"),
+      User("hansel", "Hansel Yohanes"),
+      User("christopher", "Christopher Titan"),
+      User("divo", "Divo Ardiano Kesuma Dewa"),
+      User("cindyelonora20", "Cindy Elonora")
+    ],
   ),
 ];

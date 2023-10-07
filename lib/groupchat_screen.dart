@@ -5,13 +5,11 @@ import 'package:file_picker/file_picker.dart' as file_picker;
 import 'package:audioplayers/audioplayers.dart';
 
 class GroupChatScreen extends StatefulWidget {
-  final String contactName;
+  final String groupName;
 
-  const GroupChatScreen({Key? key, required this.contactName})
-      : super(key: key);
+  const GroupChatScreen({Key? key, required this.groupName}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _GroupChatScreenState createState() => _GroupChatScreenState();
 }
 
@@ -58,11 +56,6 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
       ],
     );
     if (result != null) {
-      // ignore: unused_local_variable
-      final fileName = result.files.single.name;
-      // ignore: unused_local_variable
-      final fileSize = result.files.single.size;
-
       // Handle the selected file (filePath, fileName, fileSize)
     }
   }
@@ -122,7 +115,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.contactName),
+        title: Text(widget.groupName),
       ),
       body: Column(
         children: <Widget>[

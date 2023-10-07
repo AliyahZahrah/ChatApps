@@ -53,8 +53,8 @@ class Sidebar extends StatelessWidget {
                   ),
                   // Ganti tampilan email dengan username
                   Text(
-                    "$username",
-                    style: TextStyle(
+                    username,
+                    style: const TextStyle(
                       fontSize: 14.0,
                       color: Colors.grey,
                     ),
@@ -63,8 +63,14 @@ class Sidebar extends StatelessWidget {
               ),
             ),
             ListTile(
-              leading: const Icon(Icons.person),
-              title: const Text("Edit Profile"),
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+              leading: Image.asset('assets/icon/editprofile.jpg',
+                  width: 32.0, height: 32.0),
+              title: const Text(
+                "Edit Profile",
+                style: TextStyle(fontSize: 16.0),
+              ),
               onTap: () {
                 // Navigasi ke halaman UserProfile saat "Edit Profile" diklik
                 Navigator.of(context).push(
@@ -75,8 +81,14 @@ class Sidebar extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text("Settings"),
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+              leading: Image.asset('assets/icon/setting.jpg',
+                  width: 32.0, height: 32.0),
+              title: const Text(
+                "Settings",
+                style: TextStyle(fontSize: 16.0),
+              ),
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
@@ -87,8 +99,14 @@ class Sidebar extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.info),
-              title: const Text("Information"),
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+              leading: Image.asset('assets/icon/info.jpg',
+                  width: 32.0, height: 32.0),
+              title: const Text(
+                "Information",
+                style: TextStyle(fontSize: 16.0),
+              ),
               onTap: () {
                 // Navigasi ke halaman informasi tentang aplikasi
                 Navigator.of(context).push(
@@ -99,8 +117,14 @@ class Sidebar extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.help),
-              title: const Text("Help"),
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+              leading: Image.asset('assets/icon/help.jpg',
+                  width: 32.0, height: 32.0),
+              title: const Text(
+                "Help",
+                style: TextStyle(fontSize: 16.0),
+              ),
               onTap: () {
                 // Navigasi ke halaman bantuan
                 Navigator.of(context).push(

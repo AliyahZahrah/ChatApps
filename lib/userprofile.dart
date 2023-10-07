@@ -85,11 +85,11 @@ class _UserProfileState extends State<UserProfile> {
             ),
             const SizedBox(height: 16.0),
             const Text(
-              "Email",
+              "Username",
               style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
             ),
             TextFormField(
-              initialValue: "cindyelonora20@gmail.com",
+              initialValue: "cindyelonora20",
               onChanged: (value) {},
             ),
             const SizedBox(height: 16.0),

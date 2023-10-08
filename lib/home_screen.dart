@@ -1,6 +1,10 @@
-import 'package:chatverse/chat_screen.dart';
-import 'package:chatverse/search.dart';
+import 'package:chatverse/chatscreenaliyah.dart';
+import 'package:chatverse/chatscreenchristoper.dart';
+import 'package:chatverse/chatscreenhansel.dart';
+import 'package:chatverse/chatscreensasa.dart';
+import 'package:chatverse/chatscreentiara.dart';
 import 'package:flutter/material.dart';
+import 'package:chatverse/chatscreengeneral.dart';
 import 'package:chatverse/group_screen.dart';
 import 'contact.dart';
 import 'package:chatverse/sidebar.dart';
@@ -25,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
           if (isSidebarOpen)
             GestureDetector(
               onTap: () {
-                // Tutup sidebar saat area luar (content) diklik
                 _toggleSidebar();
               },
               child: Container(
@@ -47,25 +50,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   AppBar buildCustomAppBar() {
     return AppBar(
-      title: const Text(
-        "ChatVerse",
-        style: TextStyle(
-          fontSize: 25,
-          fontWeight: FontWeight.bold,
-          fontFamily: 'Luckiest Guy',
-        ),
-      ),
+      title: const Text("ChatVerse"),
       automaticallyImplyLeading: false,
       actions: [
         IconButton(
           icon: const Icon(Icons.search),
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const SearchScreen(),
-              ),
-            );
-          },
+          onPressed: () {},
         ),
       ],
     );
@@ -109,7 +99,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           );
         } else if (index == 2) {
-          // Memanggil metode _toggleSidebar saat profil diklik
           _toggleSidebar();
         }
       },
@@ -124,16 +113,14 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class Body extends StatelessWidget {
-  // ignore: use_key_in_widget_constructors
   const Body({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: chatsData.length + 1, // Tambahkan satu item untuk ikon tambah
+      itemCount: chatsData.length + 1,
       itemBuilder: (context, index) {
         if (index == 0) {
-          // Item pertama adalah ikon tambah
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
             child: ListTile(
@@ -159,9 +146,7 @@ class Body extends StatelessWidget {
             ),
           );
         } else {
-          // Item berikutnya adalah daftar kontak
-          final contactIndex =
-              index - 1; // Karena elemen pertama adalah "New Contact"
+          final contactIndex = index - 1;
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
             child: ListTile(
@@ -200,13 +185,53 @@ class Body extends StatelessWidget {
               ),
               onTap: () {
                 // Aksi ketika kontak pesan diklik
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => ChatScreen(
-                      contactName: chatsData[contactIndex].name,
+                final contactName = chatsData[contactIndex].name;
+                if (contactName == 'Aliyah') {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ChatScreenAliyah(
+                        contactName: contactName,
+                      ),
                     ),
-                  ),
-                );
+                  );
+                } else if (contactName == 'Sasa') {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ChatScreenSasa(
+                        contactName: contactName,
+                      ),
+                    ),
+                  );
+                } else if (contactName == 'Tiara') {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ChatScreenTiara(
+                        contactName: contactName,
+                      ),
+                    ),
+                  );
+                } else if (contactName == 'Hansel') {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ChatScreenHansel(
+                        contactName: contactName,
+                      ),
+                    ),
+                  );
+                } else if (contactName == 'Christopher') {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ChatScreenChristoper(
+                        contactName: contactName,
+                      ),
+                    ),
+                  );
+                } else {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ChatScreen(
+                            contactName: contactName,
+                          )));
+                }
               },
             ),
           );

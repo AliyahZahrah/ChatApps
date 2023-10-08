@@ -14,7 +14,6 @@ class SettingScreen extends StatelessWidget {
         title: const Text("Settings"),
       ),
       body: SafeArea(
-        // Gunakan SafeArea untuk memastikan konten terlihat dengan baik di bawah status bar
         child: ListView(
           children: <Widget>[
             ListTile(
@@ -89,7 +88,7 @@ class SettingScreen extends StatelessWidget {
                 ));
               },
             ),
-            const SizedBox(height: 24.0), // Menambah jarak antar elemen
+            const SizedBox(height: 24.0),
           ],
         ),
       ),

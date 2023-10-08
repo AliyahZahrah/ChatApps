@@ -144,7 +144,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
           children: [
             const CircleAvatar(
               backgroundImage: AssetImage('assets/img/groupmp.jpg'),
-              radius: 16, // Sesuaikan dengan ukuran yang Anda inginkan
+              radius: 16,
             ),
             const SizedBox(width: 8), // Jarak antara avatar dan teks
             Text(widget.groupName),

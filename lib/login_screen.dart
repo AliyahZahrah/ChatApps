@@ -108,6 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               'LOGIN'.toUpperCase(),
                               style: const TextStyle(
                                 fontSize: 20.0,
+                                fontFamily: 'Montserrat',
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),

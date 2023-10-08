@@ -118,7 +118,13 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                 ),
                 subtitle: Text(searchResults[index].username),
-                trailing: const Icon(Icons.chat, color: Colors.black),
+                trailing: const CircleAvatar(
+                  backgroundColor: Color(0xFF673AB7),
+                  child: Icon(
+                    Icons.add,
+                    color: Colors.white,
+                  ),
+                ),
               );
             },
           ),

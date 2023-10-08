@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:file_picker/file_picker.dart' as file_picker;
 import 'package:audioplayers/audioplayers.dart';
 
@@ -20,9 +19,35 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
   late AudioPlayer _audioPlayer;
   String? _audioFilePath;
 
+  @override
+  void initState() {
+    super.initState();
+    _messages.addAll([
+      const GroupChatMessage(
+        senderName: "aliyahz22",
+        text: "Hi, Selamat Bergabung di Group Kami!",
+      ),
+      const GroupChatMessage(
+        senderName: "sasa",
+        text: "Hi, Semuanya",
+      ),
+      const GroupChatMessage(
+        senderName: "tiara",
+        text: "Senang bergabung dengan kalian",
+      ),
+      const GroupChatMessage(
+        senderName: "hansel",
+        text:
+            "Bagaimana kabar kalian semua? Semoga kabar kalian baik-baik saja",
+      ),
+    ]);
+  }
+
   void _handleSubmitted(String text) {
     _textController.clear();
+    String senderName = widget.groupName;
     GroupChatMessage message = GroupChatMessage(
+      senderName: senderName,
       text: text,
     );
     setState(() {
@@ -39,7 +64,8 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
   }
 
   Future<void> _pickFile() async {
-    FilePickerResult? result = await file_picker.FilePicker.platform.pickFiles(
+    file_picker.FilePickerResult? result =
+        await file_picker.FilePicker.platform.pickFiles(
       type: file_picker.FileType.custom,
       allowedExtensions: [
         'pdf',
@@ -68,8 +94,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
       });
     } else {
       _audioPlayer = AudioPlayer();
-      await _audioPlayer
-          .play(_audioFilePath as Source); // Path ke file audio lokal
+      await _audioPlayer.play(_audioFilePath as Source);
       setState(() {
         _audioFilePath = 'path_to_audio_file.mp3';
       });
@@ -115,63 +140,100 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.groupName),
+        title: Row(
+          children: [
+            const CircleAvatar(
+              backgroundImage: AssetImage('assets/img/groupmp.jpg'),
+              radius: 16, // Sesuaikan dengan ukuran yang Anda inginkan
+            ),
+            const SizedBox(width: 8), // Jarak antara avatar dan teks
+            Text(widget.groupName),
+          ],
+        ),
       ),
-      body: Column(
-        children: <Widget>[
-          Flexible(
-            child: ListView.builder(
-              reverse: true,
-              itemCount: _messages.length,
-              itemBuilder: (context, index) {
-                return _messages[index];
-              },
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Flexible(
+              child: ListView.builder(
+                reverse: true,
+                itemCount: _messages.length,
+                itemBuilder: (context, index) {
+                  return _messages[index];
+                },
+              ),
             ),
-          ),
-          const Divider(height: 1.0),
-          Container(
-            decoration: BoxDecoration(
-              color: Theme.of(context).cardColor,
+            const Divider(height: 1.0),
+            Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).cardColor,
+              ),
+              child: _buildTextComposer(),
             ),
-            child: _buildTextComposer(),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
 
 class GroupChatMessage extends StatelessWidget {
+  final String senderName;
   final String text;
 
-  const GroupChatMessage({Key? key, required this.text}) : super(key: key);
+  const GroupChatMessage(
+      {Key? key, required this.senderName, required this.text})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final isCurrentUser = senderName == "cindyelonora20";
+    final textColor = isCurrentUser ? Colors.black : Colors.white;
+    final alignment =
+        isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start;
+    final margin = isCurrentUser
+        ? const EdgeInsets.only(left: 80.0, right: 8.0, top: 8.0, bottom: 8.0)
+        : const EdgeInsets.only(left: 8.0, right: 80.0, top: 8.0, bottom: 8.0);
+    final borderRadius = isCurrentUser
+        ? const BorderRadius.only(
+            topLeft: Radius.circular(15.0),
+            topRight: Radius.circular(15.0),
+            bottomRight: Radius.circular(15.0),
+          )
+        : const BorderRadius.only(
+            topLeft: Radius.circular(15.0),
+            topRight: Radius.circular(15.0),
+            bottomLeft: Radius.circular(15.0),
+          );
+
+    final messageBackground =
+        isCurrentUser ? Colors.white : const Color.fromARGB(255, 103, 58, 183);
+
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      margin: margin,
+      child: Column(
+        crossAxisAlignment: alignment,
         children: <Widget>[
-          Container(
-            margin: const EdgeInsets.only(right: 16.0),
-            child: const CircleAvatar(
-              child: Text('User'),
+          if (!isCurrentUser)
+            Text(
+              senderName,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
             ),
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const Text(
-                  'User',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 5.0),
-                  child: Text(text),
-                ),
-              ],
+          Container(
+            padding: const EdgeInsets.all(10.0),
+            decoration: BoxDecoration(
+              color: messageBackground,
+              borderRadius: borderRadius,
+            ),
+            child: Text(
+              text,
+              style: TextStyle(
+                color: textColor,
+                fontSize: 16,
+              ),
             ),
           ),
         ],

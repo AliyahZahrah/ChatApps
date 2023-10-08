@@ -9,25 +9,50 @@ class InformationScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Information"),
       ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: SafeArea(
+        child: Stack(
+          alignment: Alignment.center,
           children: <Widget>[
-            Image(
-              image: AssetImage(
-                  'assets/img/ChatVerse.png'), // Ganti dengan path ke gambar logo
-              width: 120.0, // Sesuaikan dengan ukuran logo
-              height: 120.0,
+            Image.asset(
+              'assets/img/polos.jpg',
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
             ),
-            SizedBox(height: 16.0),
-            Text(
-              'ChatVerse adalah aplikasi obrolan yang dirancang untuk memungkinkan pengguna untuk berkomunikasi secara instan melalui pesan teks, suara, file, video, dan gambar. Aplikasi ini bertujuan untuk memberikan pengalaman obrolan yang cepat, aman, dan nyaman kepada penggunanya.',
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.normal,
-                color: Colors.black,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  const Text(
+                    'ChatVerse',
+                    style: TextStyle(
+                      fontSize: 50.0,
+                      fontFamily: 'Luckiest Guy',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 10.0),
+                  Image.asset(
+                    'assets/img/ChatVerse.png',
+                    width: 350.0,
+                    height: 350.0,
+                  ),
+                  const SizedBox(height: 10.0),
+                  const Text(
+                    'ChatVerse adalah aplikasi obrolan yang dirancang untuk memungkinkan pengguna untuk berkomunikasi secara pribadi maupun dalam grup melalui pesan teks, suara, file, video, dan gambar. Aplikasi ini bertujuan untuk memberikan pengalaman obrolan yang mudah, cepat, aman, dan nyaman kepada penggunanya.',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Roboto',
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
-              textAlign: TextAlign.center,
             ),
           ],
         ),

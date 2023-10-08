@@ -3,6 +3,7 @@ import 'package:chatverse/sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:chatverse/groupchat_screen.dart';
 import 'package:chatverse/group.dart';
+import 'package:chatverse/search.dart';
 
 class GroupScreen extends StatefulWidget {
   final String groupName;
@@ -47,12 +48,25 @@ class _GroupScreenState extends State<GroupScreen> {
 
   AppBar buildCustomAppBar() {
     return AppBar(
-      title: const Text("ChatVerse"),
+      title: const Text(
+        "ChatVerse",
+        style: TextStyle(
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Luckiest Guy',
+        ),
+      ),
       automaticallyImplyLeading: false,
       actions: [
         IconButton(
           icon: const Icon(Icons.search),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const SearchScreen(),
+              ),
+            );
+          },
         ),
       ],
     );

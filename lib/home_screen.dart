@@ -47,7 +47,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   AppBar buildCustomAppBar() {
     return AppBar(
-      title: const Text("ChatVerse"),
+      title: const Text(
+        "ChatVerse",
+        style: TextStyle(
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Luckiest Guy',
+        ),
+      ),
       automaticallyImplyLeading: false,
       actions: [
         IconButton(

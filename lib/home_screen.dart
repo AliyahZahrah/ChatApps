@@ -6,8 +6,9 @@ import 'package:chatverse/chatscreentiara.dart';
 import 'package:flutter/material.dart';
 import 'package:chatverse/chatscreengeneral.dart';
 import 'package:chatverse/group_screen.dart';
-import 'contact.dart';
+import 'package:chatverse/contact.dart';
 import 'package:chatverse/sidebar.dart';
+import 'package:chatverse/search.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -55,7 +56,13 @@ class _HomeScreenState extends State<HomeScreen> {
       actions: [
         IconButton(
           icon: const Icon(Icons.search),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const SearchScreen(),
+              ),
+            );
+          },
         ),
       ],
     );

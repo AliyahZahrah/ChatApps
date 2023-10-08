@@ -113,6 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class Body extends StatelessWidget {
+  // ignore: use_key_in_widget_constructors
   const Body({Key? key});
 
   @override

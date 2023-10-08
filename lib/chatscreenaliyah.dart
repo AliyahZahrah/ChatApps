@@ -40,7 +40,7 @@ class _ChatScreenStateAliyah extends State<ChatScreenAliyah> {
           isUser: false,
           senderName: widget.contactName,
         ),
-        ChatMessage(
+        const ChatMessage(
           text: "halo jugaa gue baik thanks, lu gmn?",
           isUser: true,
           senderName: "Cindy",
@@ -51,7 +51,7 @@ class _ChatScreenStateAliyah extends State<ChatScreenAliyah> {
           isUser: false,
           senderName: widget.contactName,
         ),
-        ChatMessage(
+        const ChatMessage(
           text: "wow, asik banget tu keknya wkwkw",
           isUser: true,
           senderName: "Cindy",
@@ -149,10 +149,10 @@ class _ChatScreenStateAliyah extends State<ChatScreenAliyah> {
             child: TextField(
               controller: _textController,
               onSubmitted: _handleSubmitted,
-              decoration: InputDecoration.collapsed(
+              decoration: const InputDecoration.collapsed(
                 hintText: 'Send a message',
               ),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16.0, // Ubah ukuran font teks
               ),
             ),
@@ -171,7 +171,7 @@ class _ChatScreenStateAliyah extends State<ChatScreenAliyah> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(56.0),
+        preferredSize: const Size.fromHeight(56.0),
         child: AppBar(
           backgroundColor: Colors.deepPurple,
           title: Row(
@@ -187,7 +187,7 @@ class _ChatScreenStateAliyah extends State<ChatScreenAliyah> {
                 ),
                 radius: 20.0, // Atur ukuran radius sesuai kebutuhan Anda
               ),
-              SizedBox(
+              const SizedBox(
                   width:
                       10), // Tambahkan jarak antara gambar profil dan nama kontak
               Text(widget.contactName),
@@ -203,7 +203,7 @@ class _ChatScreenStateAliyah extends State<ChatScreenAliyah> {
             Flexible(
               child: ListView.separated(
                 separatorBuilder: (context, index) {
-                  return SizedBox(height: 10.0); // Jarak antara bubble chat
+                  return const SizedBox(height: 10.0); // Jarak antara bubble chat
                 },
                 reverse: true,
                 itemCount: _messages.length,
@@ -216,7 +216,7 @@ class _ChatScreenStateAliyah extends State<ChatScreenAliyah> {
             Container(
               padding: const EdgeInsets.all(
                   8.0), // Tambahkan padding untuk jarak samping
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors
                     .white, // Ganti warna latar belakang chat menjadi putih
               ),
@@ -244,7 +244,7 @@ class ChatMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(
+      margin: const EdgeInsets.only(
         left: 10.0, // Ubah margin kiri menjadi 16.0
         right: 10.0, // Ubah margin kanan menjadi 16.0
         top: 7.5, // Tambahkan margin atas sekitar 7.5
@@ -258,10 +258,10 @@ class ChatMessage extends StatelessWidget {
                 .start, // Pesan pengirim di sebelah kanan, penerima di sebelah kiri
         children: <Widget>[
           isUser
-              ? SizedBox(
+              ? const SizedBox(
                   width: 30.0,
                 ) // Tambahkan jarak ke kanan untuk bubble chat pengguna
-              : SizedBox(width: 0), // Biarkan nol untuk bubble chat penerima
+              : const SizedBox(width: 0), // Biarkan nol untuk bubble chat penerima
           Expanded(
             child: Column(
               crossAxisAlignment: isUser
@@ -300,15 +300,15 @@ class ChatMessage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 0.5), // Tambahkan jarak ke bawah sekitar 12.0
+                const SizedBox(height: 0.5), // Tambahkan jarak ke bawah sekitar 12.0
               ],
             ),
           ),
           !isUser
-              ? SizedBox(
+              ? const SizedBox(
                   width: 30.0,
                 ) // Tambahkan jarak ke kanan untuk bubble chat penerima
-              : SizedBox(width: 0), // Biarkan nol untuk bubble chat pengguna
+              : const SizedBox(width: 0), // Biarkan nol untuk bubble chat pengguna
         ],
       ),
     );
